@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <samjuk_auto_login_admin>
+            <general>
+                <auto_login>0</auto_login>
+                <username>admin</username>
+                <skip_production_mode_check>0</skip_production_mode_check>
+            </general>
+        </samjuk_auto_login_admin>
+    </default>
+</config>
