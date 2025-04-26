@@ -17,11 +17,7 @@ class LoginAdminTest extends TestCase
         $user = $this->createMock(UserInterface::class);
         $eventManager = $this->createMock(ManagerInterface::class);
 
-        $storage = $this->getMockBuilder(StorageInterface::class)
-            ->setMethods(array_merge(
-                get_class_methods(StorageInterface::class),
-                ['setUser']
-            ))
+        $storage = $this->getMockBuilder(MockableStorageInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -40,4 +36,10 @@ class LoginAdminTest extends TestCase
             $eventManager
         ))->execute($user);
     }
+}
+
+// phpcs:ignore PSR1.Classes.ClassDeclaration.MultipleClasses
+interface MockableStorageInterface extends StorageInterface
+{
+    public function setUser($user);
 }
