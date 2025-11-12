@@ -38,8 +38,6 @@ jobs:
             MAGENTO_VERSION: 2.4.5-p14
           - PHP_VERSION: php81-fpm
             MAGENTO_VERSION: 2.4.4-p13
-          - PHP_VERSION: php74-fpm
-            MAGENTO_VERSION: 2.4.3-p2   # @TODO: -p3 missing from upstream containers
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
