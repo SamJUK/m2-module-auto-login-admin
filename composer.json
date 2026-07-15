@@ -3,17 +3,41 @@
     "description": "Automatically logins into the Admin panel, to a preset user",
     "type": "magento2-module",
     "require": {
-      "php": "^7.0|^8.0"
+        "php": "^7.0|^8.0"
     },
-    "license": ["MIT"],
+    "license": [
+        "MIT"
+    ],
     "autoload": {
-      "files": ["registration.php"],
-      "psr-4": {
-        "SamJUK\\AutoLoginAdmin\\": ""
-      }
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "SamJUK\\AutoLoginAdmin\\": ""
+        }
     },
     "require-dev": {
         "phpunit/phpunit": "^10.5",
         "phpstan/phpstan": "^1.12"
-    }
+    },
+    "homepage": "https://github.com/SamJUK/m2-module-auto-login-admin",
+    "authors": [
+        {
+            "name": "Sam James",
+            "email": "sam@samdjames.uk",
+            "homepage": "https://www.samdjames.uk"
+        }
+    ],
+    "keywords": [
+        "magento2",
+        "magento 2",
+        "magento2-module",
+        "adobe-commerce",
+        "extension",
+        "admin",
+        "auto-login",
+        "local-development",
+        "devtools",
+        "open-source"
+    ]
 }
