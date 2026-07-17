@@ -18,12 +18,16 @@ jobs:
     uses: samjuk/github-actions/.github/workflows/magento2-test-static.yaml@master
     needs: lint
 
-  unit-tests-ghas:
-    name: Unit Tests (GHAS)
-    uses: samjuk/github-actions/.github/workflows/magento2-test-unit-module-ghas.yaml@master
+  phpunit-tests-ghas:
+    name: PHPUnit Tests (GHAS)
+    # TEMPORARY: pointed at test-github-actions to prove magento2-test-phpunit-module-ghas
+    # against a real module before promoting it to prod (samjuk/github-actions).
+    uses: samjuk/test-github-actions/.github/workflows/magento2-test-phpunit-module-ghas.yaml@master
     needs: static
     with:
       magento_version: ${{ matrix.magento_version }}
+      run_unit_tests: true
+      run_integration_tests: true
     strategy:
       fail-fast: false
       matrix:
