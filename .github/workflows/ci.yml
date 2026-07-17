@@ -27,10 +27,11 @@ jobs:
     uses: samjuk/github-actions/.github/workflows/magento2-test-phpunit-module-ghas.yaml@master
     needs: [static, supported-versions]
     with:
-      magento_version: ${{ matrix.magento_version }}
+      magento_version: ${{ matrix.version }}
+      magento_distribution: ${{ matrix.distribution }}
       run_unit_tests: true
       run_integration_tests: true
     strategy:
       fail-fast: false
       matrix:
-        magento_version: ${{ fromJson(needs.supported-versions.outputs.versions) }}
+        include: ${{ fromJson(needs.supported-versions.outputs.versions) }}
