@@ -10,7 +10,8 @@ class Login
         private \SamJUK\AutoLoginAdmin\Service\GetAdminByUsername $getAdminByUsername,
         private \SamJUK\AutoLoginAdmin\Service\LoginAdmin $loginAdmin,
         private \SamJUK\AutoLoginAdmin\Model\Config $config
-    ) { }
+    ) {
+    }
 
     public function aroundExecute(BaseLogin $subject, callable $proceed)
     {
