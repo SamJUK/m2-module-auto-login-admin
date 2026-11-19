@@ -8,7 +8,8 @@ class GetAdminByUsername
 {
     public function __construct(
         private \Magento\User\Model\UserFactory $userFactory
-    ) { }
+    ) {
+    }
 
     public function execute(string $username): \Magento\User\Api\Data\UserInterface
     {

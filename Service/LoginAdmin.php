@@ -9,7 +9,8 @@ class LoginAdmin
     public function __construct(
         private \Magento\Backend\Model\Auth\StorageInterface $authStorage,
         private \Magento\Framework\Event\ManagerInterface $eventManager
-    ) { }
+    ) {
+    }
 
     public function execute(\Magento\User\Api\Data\UserInterface $admin)
     {
