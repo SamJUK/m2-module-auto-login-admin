@@ -8,31 +8,33 @@ use SamJUK\AutoLoginAdmin\Service\GetAdminByUsername;
 use SamJUK\AutoLoginAdmin\Service\LoginAdmin;
 use SamJUK\AutoLoginAdmin\Model\Config;
 use SamJUK\AutoLoginAdmin\Plugin\Login;
-use Magento\User\Api\Data\UserInterface;
+use Magento\Backend\Controller\Adminhtml\Auth\Login as BaseLogin;
+use Magento\User\Model\User;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class LoginTest extends TestCase
 {
-    private $getAdminByUsername;
-    private $loginAdmin;
-    private $config;
-    private $originalLogin;
-    private $admin;
+    private GetAdminByUsername&MockObject $getAdminByUsername;
+    private LoginAdmin&MockObject $loginAdmin;
+    private Config&MockObject $config;
+    private BaseLogin&MockObject $originalLogin;
+    private User&MockObject $admin;
 
     public function setUp(): void
     {
-        $this->admin = $this->createMock(UserInterface::class);
+        $this->admin = $this->createMock(User::class);
         $this->getAdminByUsername = $this->createMock(GetAdminByUsername::class);
         $this->loginAdmin = $this->createMock(LoginAdmin::class);
         $this->config = $this->createMock(Config::class);
-        $this->originalLogin = $this->createMock(\Magento\Backend\Controller\Adminhtml\Auth\Login::class);
+        $this->originalLogin = $this->createMock(BaseLogin::class);
         $this->originalLogin->method('execute')
             ->willReturnCallback(function () {
                 return true;
             });
     }
 
-    public function testDisabledFeatureFlag()
+    public function testDisabledFeatureFlag(): void
     {
         $this->config->method('isModuleEnabled')
             ->willReturn(false);
@@ -53,7 +55,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function testEnabledFeatureFlag()
+    public function testEnabledFeatureFlag(): void
     {
         $this->config->method('isModuleEnabled')
             ->willReturn(true);
@@ -84,7 +86,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function testSkipsLoginOnInvalidUser()
+    public function testSkipsLoginOnInvalidUser(): void
     {
         $this->config->method('isModuleEnabled')
             ->willReturn(true);
@@ -101,8 +103,8 @@ class LoginTest extends TestCase
         $this->getAdminByUsername->method('execute')
             ->willReturn($this->admin);
 
-            $this->loginAdmin->expects($this->never())
-                ->method('execute');
+        $this->loginAdmin->expects($this->never())
+            ->method('execute');
 
         (new Login(
             $this->getAdminByUsername,

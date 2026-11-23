@@ -19,42 +19,42 @@ class Config
     ) {
     }
 
-    public function isModuleEnabled()
+    public function isModuleEnabled(): bool
     {
         return $this->isEnabled() && $this->isStoreInAValidMode();
     }
 
-    public function isStoreInAValidMode()
+    public function isStoreInAValidMode(): bool
     {
         return $this->state->getMode() !== State::MODE_PRODUCTION
             || $this->getSkipProductionModeCheck();
     }
 
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return $this->getFlag(self::XML_PATH_AUTO_LOGIN);
     }
 
-    public function getTargetUserName()
+    public function getTargetUserName(): string
     {
-        return $this->getValue(self::XML_PATH_TARGET_USER_NAME);
+        return (string) $this->getValue(self::XML_PATH_TARGET_USER_NAME);
     }
 
-    public function getSkipProductionModeCheck()
+    public function getSkipProductionModeCheck(): bool
     {
         return $this->getFlag(self::XML_PATH_SKIP_PRODUCTION_MODE_CHECK);
     }
 
-    private function getFlag($path, $scope = 'default', $scopeCode = null)
+    private function getFlag(string $path, string $scope = 'default', ?string $scopeCode = null): bool
     {
-        return (bool)$this->scopeConfig->isSetFlag(
+        return $this->scopeConfig->isSetFlag(
             $path,
             $scope,
             $scopeCode
         );
     }
 
-    private function getValue($path, $scope = 'default', $scopeCode = null)
+    private function getValue(string $path, string $scope = 'default', ?string $scopeCode = null): mixed
     {
         return $this->scopeConfig->getValue(
             $path,

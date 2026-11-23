@@ -13,6 +13,9 @@ class Login
     ) {
     }
 
+    /**
+     * @return \Magento\Framework\Controller\ResultInterface|\Magento\Framework\App\ResponseInterface
+     */
     public function aroundExecute(BaseLogin $subject, callable $proceed)
     {
         if (!$this->config->isModuleEnabled()) {

@@ -11,7 +11,7 @@ class GetAdminByUsername
     ) {
     }
 
-    public function execute(string $username): \Magento\User\Api\Data\UserInterface
+    public function execute(string $username): \Magento\User\Model\User
     {
         return $this->userFactory->create()->loadByUsername($username);
     }
